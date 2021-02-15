@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Getter
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreatedTrelloCard {
 
