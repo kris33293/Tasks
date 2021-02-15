@@ -1,11 +1,16 @@
 package com.crud.tasks.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Data
 public class TrelloCardDto {
 
@@ -30,11 +35,8 @@ public class TrelloCardDto {
                 .queryParam("desc", trelloCardDto.getDescription())
                 .queryParam("pos", trelloCardDto.getPos())
                 .queryParam("idList", trelloCardDto.getListId())
-                .queryParam("badges", trelloCardDto.getBadges())
                 .build()
                 .encode()
                 .toUri();
-
-
     }
 }
