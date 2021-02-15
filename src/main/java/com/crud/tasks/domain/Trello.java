@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -17,4 +17,7 @@ public class Trello {
     private int board;
     @JsonProperty("card")
     private int card;
+
+    public Trello() {
+    }
 }

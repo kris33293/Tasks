@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AttachmentByType {
@@ -16,6 +15,6 @@ public class AttachmentByType {
     @JsonProperty("trello")
     private Trello trello;
 
-
-
+    public AttachmentByType() {
+    }
 }

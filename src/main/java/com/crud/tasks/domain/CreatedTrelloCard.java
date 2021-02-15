@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Getter
 @Data
@@ -27,4 +27,6 @@ public class CreatedTrelloCard {
     @JsonProperty("badges")
     private Badges badges;
 
+    public CreatedTrelloCard() {
+    }
 }
