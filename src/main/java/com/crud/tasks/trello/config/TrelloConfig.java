@@ -2,11 +2,16 @@ package com.crud.tasks.trello.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Component
 public class TrelloConfig {
+
 
     @Value("${trello.api.endpoint.prod}")
     private String trelloApiEndpoint;
