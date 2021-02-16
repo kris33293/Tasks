@@ -19,9 +19,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
 
-	 runtimeOnly 'org.postgresql:postgresql'
+//	 runtimeOnly 'org.postgresql:postgresql'
 
 	compileOnly 'org.projectlombok:lombok:1.18.16'
 	annotationProcessor 'org.projectlombok:lombok:1.18.16'
@@ -30,6 +30,9 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
 
 //	compile 'org.springframework.boot:spring-boot-starter-tomcat'
+
+	compile('io.springfox:springfox-swagger2:2.9.2')
+	compile('io.springfox:springfox-swagger-ui:2.9.2')
 
 
 }
