@@ -59,19 +59,6 @@ public class TrelloMapperTestSuit {
 
     }
 
-    @Test
-    void testMapToListDto() {
 
-    }
-
-    @Test
-    void testMapToCardDto() {
-
-    }
-
-    @Test
-    void testMapToCard() {
-
-    }
 
 }
