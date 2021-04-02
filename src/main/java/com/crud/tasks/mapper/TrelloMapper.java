@@ -32,19 +32,14 @@ public class TrelloMapper {
                 .collect(toList());
     }
 
-    public List<TrelloListDto> mapToListDto(final List<TrelloList> trelloLists) {
+    public List<TrelloList> mapToListDto(final List<TrelloList> trelloLists) {
         return trelloLists.stream()
                 .map(trelloList -> new TrelloListDto(trelloList.getId(), trelloList.getName(), trelloList.isClosed()))
                 .collect(toList());
     }
 
     public TrelloCardDto mapToCardDto(final TrelloCard trelloCard) {
-        TrelloCardDto trelloBoardDto = new TrelloCardDto();
-        trelloBoardDto.setPos(trelloCard.getPos());
-        trelloBoardDto.setListId(trelloCard.getListId());
-        trelloBoardDto.setDescription(trelloCard.getDescription());
-        trelloBoardDto.setName(trelloCard.getName());
-        return trelloBoardDto;
+        return new TrelloCardDto(trelloCard.getName(), trelloCard.getDescription(), trelloCard.getPos(), trelloCard.getListId());
     }
 
     public TrelloCard mapToCard(final TrelloCardDto trelloCardDto) {
@@ -52,4 +47,3 @@ public class TrelloMapper {
     }
 
 }
-
