@@ -167,5 +167,23 @@ public class TrelloMapperTestSuit {
 
     }
 
+    @Test
+    void testMapToBoard() {
+        //Given
+        TrelloListDto trelloListDto1 = new TrelloListDto("1","list1",true);
+        TrelloListDto trelloListDto2 = new TrelloListDto("2","list2",true);
+        List<TrelloListDto> trelloListDtos = new LinkedList<>();
+        trelloListDtos.add(trelloListDto1);
+        trelloListDtos.add(trelloListDto2);
+
+        TrelloBoardDto testBoardDto1 = new TrelloBoardDto("0","testboarddto1",trelloListDtos);
+
+        //When
+        TrelloBoard result = trelloMapper.mapToBoard(testBoardDto1);
+
+        //Then
+        Assertions.assertEquals(result.getName(), testBoardDto1.getName());
+
+    }
 
 }
