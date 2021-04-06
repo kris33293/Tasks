@@ -10,6 +10,10 @@ import static java.util.stream.Collectors.toList;
 @Component
 public class TrelloMapper {
 
+    public TrelloBoard mapToBoard(final TrelloBoardDto trelloBoardDto) {
+        return new TrelloBoard(trelloBoardDto.getId(), trelloBoardDto.getName(), mapToList(trelloBoardDto.getLists()));
+    }
+
     public List<TrelloBoard> mapToBoards(final List<TrelloBoardDto> trelloBoardDto) {
         return trelloBoardDto.stream()
                 .map(trelloBoard ->
@@ -17,6 +21,7 @@ public class TrelloMapper {
                 .collect(toList());
 
     }
+
 
     public List<TrelloBoardDto> mapToBoardsDto(final List<TrelloBoard> trelloBoards) {
         return trelloBoards.stream()
@@ -32,18 +37,26 @@ public class TrelloMapper {
                 .collect(toList());
     }
 
-    public List<TrelloList> mapToListDto(final List<TrelloList> trelloLists) {
+
+
+    public List<TrelloListDto> mapToListDto(final List<TrelloList> trelloLists) {
         return trelloLists.stream()
                 .map(trelloList -> new TrelloListDto(trelloList.getId(), trelloList.getName(), trelloList.isClosed()))
                 .collect(toList());
     }
 
     public TrelloCardDto mapToCardDto(final TrelloCard trelloCard) {
-        return new TrelloCardDto(trelloCard.getName(), trelloCard.getDescription(), trelloCard.getPos(), trelloCard.getListId());
+        TrelloCardDto card = new TrelloCardDto();
+        card.setName(trelloCard.getName());
+        card.setDescription(trelloCard.getDescription());
+        card.setListId(trelloCard.getListId());
+        card.setPos(trelloCard.getPos());
+        return card;
     }
 
     public TrelloCard mapToCard(final TrelloCardDto trelloCardDto) {
         return new TrelloCard(trelloCardDto.getName(), trelloCardDto.getDescription(), trelloCardDto.getPos(), trelloCardDto.getListId());
     }
+
 
 }
