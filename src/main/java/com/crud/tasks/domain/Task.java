@@ -11,6 +11,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Entity(name = "tasks")
 public class Task {
     @Id

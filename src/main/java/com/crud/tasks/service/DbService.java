@@ -28,4 +28,8 @@ public class DbService {
     public void deleteTaskBy(Long taskId){
         repository.deleteById(taskId);
     }
+
+    public void deleteALl(){
+        repository.deleteAll();
+    }
 }
