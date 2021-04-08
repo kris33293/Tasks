@@ -1,9 +1,6 @@
 package com.crud.tasks.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -11,6 +8,7 @@ import java.net.URI;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Data
 public class TrelloCardDto {
 
