@@ -54,8 +54,8 @@ class DbServiceTest {
         List<Task> expected = dbService.getAllTasks();
 
         //Then
-        Assertions.assertEquals(expected.get(expected.size()-2).getTitle(),task.getTitle());
-        Assertions.assertEquals(expected.get(expected.size()-1).getTitle(),task2.getTitle());
+        Assertions.assertEquals(expected.get(expected.size()-2).getTitle(),task2.getTitle());
+        Assertions.assertEquals(expected.get(expected.size()-1).getTitle(),task.getTitle());
 
         //Cleanup
         dbService.deleteALl();
