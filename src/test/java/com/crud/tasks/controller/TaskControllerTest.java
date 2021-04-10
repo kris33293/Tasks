@@ -1,6 +1,7 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.Task;
+import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -52,7 +53,10 @@ class TaskControllerTest {
     @Test
     void shouldGetTask() throws Exception {
         //Given
-        when(dbService.getTask(1L)).thenReturn(new Task(1L,"test","content"));
+        TaskController controller = new TaskController(dbService,taskMapper);
+        when(controller.getTask(1L)).thenReturn(new TaskDto(1L,"test","content"));
+        when(taskMapper.mapToTask(new TaskDto(1L,"test","content"))).thenReturn(new Task(1L,"test","content"));
+
 
         //When & Then
         mockMvc
