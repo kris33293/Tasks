@@ -1,6 +1,8 @@
 package com.crud.tasks.controller;
 
-import com.crud.tasks.domain.TaskDto;
+import com.crud.tasks.domain.Task;
+import com.crud.tasks.mapper.TaskMapper;
+import com.crud.tasks.service.DbService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -15,6 +17,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,12 +30,15 @@ class TaskControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private TaskController taskController;
+    private DbService dbService;
+
+    @MockBean
+    private TaskMapper taskMapper;
 
     @Test
     void shouldGetTasks() throws Exception {
         //Given
-        when(taskController.getTasks()).thenReturn(List.of());
+        when(dbService.getAllTasks()).thenReturn(List.of());
 
         //When & Then
         mockMvc
@@ -45,13 +52,12 @@ class TaskControllerTest {
     @Test
     void shouldGetTask() throws Exception {
         //Given
-        when(taskController.getTask(1L)).thenReturn(new TaskDto(1L,"test","content"));
+        when(dbService.getTask(1L)).thenReturn(new Task(1L,"test","content"));
 
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/v1/task/getTask?taskId=1")
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .get("/v1/task/getTask?taskId=1"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("test"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.is("content")));
@@ -64,25 +70,10 @@ class TaskControllerTest {
                 .perform(MockMvcRequestBuilders
                         .delete("/v1/task/deleteTask?taskId=1")
                         .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk());
-    }
-
-
-
-    @Test
-    void shouldUpdateTask() throws Exception {
-        //Given
-        TaskDto taskDto = new TaskDto(1L,"test","content");
-        when(taskController.updateTask(null)).thenReturn(taskDto);
-
-        //When & Then
-        mockMvc
-                .perform(MockMvcRequestBuilders
-                        .put("/v1/task/updateTask")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
 
     public static String asJsonString(final Object obj) {
         try {
@@ -96,13 +87,13 @@ class TaskControllerTest {
 
     @Test
     void shouldCreateTask() throws Exception {
-        TaskDto taskDto = new TaskDto(1L,"test","content");
+        Task task = new Task(1L,"test","content");
 
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/v1/task/createTask")
-                        .content(asJsonString(taskDto))
+                        .content(asJsonString(task))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk());
     }
