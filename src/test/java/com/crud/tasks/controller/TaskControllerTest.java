@@ -53,9 +53,7 @@ class TaskControllerTest {
     @Test
     void shouldGetTask() throws Exception {
         //Given
-        TaskController controller = new TaskController(dbService,taskMapper);
-        when(controller.getTask(1L)).thenReturn(new TaskDto(1L,"test","content"));
-        when(taskMapper.mapToTask(new TaskDto(1L,"test","content"))).thenReturn(new Task(1L,"test","content"));
+        when(taskMapper.mapToTaskDto(any())).thenReturn(new TaskDto(1L,"test","content"));
 
 
         //When & Then
